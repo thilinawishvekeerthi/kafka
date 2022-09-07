@@ -1,0 +1,3 @@
+rootProject.name = 'kafka-with-java'
+include 'kafka-wikimedia-producer'
+
