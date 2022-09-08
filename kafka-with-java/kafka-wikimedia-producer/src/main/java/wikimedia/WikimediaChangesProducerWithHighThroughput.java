@@ -10,7 +10,7 @@ import java.net.URI;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
-public class WikimediaChangesProducer {
+public class WikimediaChangesProducerWithHighThroughput {
 
 
     public static void main(String[] args) throws InterruptedException {
@@ -21,6 +21,13 @@ public class WikimediaChangesProducer {
         properties.setProperty(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, boostrapServers);
         properties.setProperty(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
         properties.setProperty(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
+
+        // set high throughput settings
+        properties.setProperty(ProducerConfig.LINGER_MS_CONFIG, "20");
+        properties.setProperty(ProducerConfig.BATCH_SIZE_CONFIG, Integer.toString(32*1024));
+        properties.setProperty(ProducerConfig.COMPRESSION_TYPE_CONFIG, "snappy");
+
+
 
         //create producer
         KafkaProducer<String, String > producer = new KafkaProducer<String, String>(properties);
@@ -33,7 +40,7 @@ public class WikimediaChangesProducer {
 
         eventSource.start();
 
-        TimeUnit.MINUTES.sleep(10);
+        TimeUnit.MINUTES.sleep(1);
     }
 
 }
