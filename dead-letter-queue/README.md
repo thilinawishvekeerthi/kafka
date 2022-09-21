@@ -1,1 +1,150 @@
-test
+************** Logs related to kafak topic retry and dlt queue *******************
+2022-09-21 07:54:54.775  INFO 4985 --- [ntainer#0-0-C-1] c.k.d.kafka.data.DataTopicConsumer       :  consuming from : data.topic, data : this is added to 1
+2022-09-21 07:54:59.272  INFO 4985 --- [ntainer#0-0-C-1] c.k.d.kafka.data.DataTopicConsumer       :  consuming from : data.topic, data : this is added to 2
+2022-09-21 07:55:03.135  INFO 4985 --- [ntainer#0-0-C-1] c.k.d.kafka.data.DataTopicConsumer       :  consuming from : data.topic, data : this is added to 3
+2022-09-21 07:55:11.328  INFO 4985 --- [ntainer#0-0-C-1] c.k.d.kafka.data.DataTopicConsumer       :  Error from : data.topic, data : this is added to 4 Error
+2022-09-21 07:55:11.834  WARN 4985 --- [ntainer#0-0-C-1] r.DeadLetterPublishingRecovererFactory$1 : Destination resolver returned non-existent partition data.topic-retry-0-2, KafkaProducer will determine partition to use for this topic
+2022-09-21 07:55:11.922  INFO 4985 --- [ntainer#0-0-C-1] o.a.k.clients.producer.ProducerConfig    : ProducerConfig values:
+	acks = -1
+	batch.size = 16384
+	bootstrap.servers = [localhost:9092]
+	buffer.memory = 33554432
+	client.dns.lookup = use_all_dns_ips
+	client.id = producer-1
+	compression.type = none
+	connections.max.idle.ms = 540000
+	delivery.timeout.ms = 120000
+	enable.idempotence = true
+	interceptor.classes = []
+	key.serializer = class org.apache.kafka.common.serialization.StringSerializer
+	linger.ms = 0
+	max.block.ms = 60000
+	max.in.flight.requests.per.connection = 5
+	max.request.size = 1048576
+	metadata.max.age.ms = 300000
+	metadata.max.idle.ms = 300000
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partitioner.class = class org.apache.kafka.clients.producer.internals.DefaultPartitioner
+	receive.buffer.bytes = 32768
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retries = 2147483647
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.connect.timeout.ms = null
+	sasl.login.read.timeout.ms = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.login.retry.backoff.max.ms = 10000
+	sasl.login.retry.backoff.ms = 100
+	sasl.mechanism = GSSAPI
+	sasl.oauthbearer.clock.skew.seconds = 30
+	sasl.oauthbearer.expected.audience = null
+	sasl.oauthbearer.expected.issuer = null
+	sasl.oauthbearer.jwks.endpoint.refresh.ms = 3600000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.max.ms = 10000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.ms = 100
+	sasl.oauthbearer.jwks.endpoint.url = null
+	sasl.oauthbearer.scope.claim.name = scope
+	sasl.oauthbearer.sub.claim.name = sub
+	sasl.oauthbearer.token.endpoint.url = null
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	socket.connection.setup.timeout.max.ms = 30000
+	socket.connection.setup.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	ssl.endpoint.identification.algorithm = https
+	ssl.engine.factory.class = null
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.certificate.chain = null
+	ssl.keystore.key = null
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.3
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.certificates = null
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	transaction.timeout.ms = 60000
+	transactional.id = null
+	value.serializer = class org.apache.kafka.common.serialization.StringSerializer
+
+2022-09-21 07:55:11.978  INFO 4985 --- [ntainer#0-0-C-1] o.a.k.clients.producer.KafkaProducer     : [Producer clientId=producer-1] Instantiated an idempotent producer.
+2022-09-21 07:55:12.147  INFO 4985 --- [ntainer#0-0-C-1] o.a.kafka.common.utils.AppInfoParser     : Kafka version: 3.1.1
+2022-09-21 07:55:12.148  INFO 4985 --- [ntainer#0-0-C-1] o.a.kafka.common.utils.AppInfoParser     : Kafka commitId: 97671528ba54a138
+2022-09-21 07:55:12.148  INFO 4985 --- [ntainer#0-0-C-1] o.a.kafka.common.utils.AppInfoParser     : Kafka startTimeMs: 1663727112147
+2022-09-21 07:55:12.208  INFO 4985 --- [ad | producer-1] org.apache.kafka.clients.Metadata        : [Producer clientId=producer-1] Resetting the last seen epoch of partition data.topic-retry-0-0 to 0 since the associated topicId changed from null to upxJyHKdT7afFuZ-lkOBqw
+2022-09-21 07:55:12.210  INFO 4985 --- [ad | producer-1] org.apache.kafka.clients.Metadata        : [Producer clientId=producer-1] Cluster ID: gypWOvyoTs2Os-DJ6hXUHw
+2022-09-21 07:55:12.230  INFO 4985 --- [ad | producer-1] o.a.k.c.p.internals.TransactionManager   : [Producer clientId=producer-1] ProducerId set to 3001 with epoch 0
+2022-09-21 07:55:12.380  INFO 4985 --- [1-retry-0-0-C-1] o.a.k.clients.consumer.KafkaConsumer     : [Consumer clientId=consumer-group_id-5, groupId=group_id] Seeking to offset 0 for partition data.topic-retry-0-0
+2022-09-21 07:55:12.815  INFO 4985 --- [1-retry-0-0-C-1] c.k.d.kafka.data.DataTopicConsumer       :  Error from : data.topic-retry-0, data : this is added to 4 Error
+2022-09-21 07:55:13.330  INFO 4985 --- [ad | producer-1] org.apache.kafka.clients.Metadata        : [Producer clientId=producer-1] Resetting the last seen epoch of partition data.topic-retry-1-0 to 0 since the associated topicId changed from null to dO03ZyckTCG6eJt9FFbCJQ
+2022-09-21 07:55:13.376  INFO 4985 --- [2-retry-1-0-C-1] o.a.k.clients.consumer.KafkaConsumer     : [Consumer clientId=consumer-group_id-4, groupId=group_id] Seeking to offset 0 for partition data.topic-retry-1-0
+2022-09-21 07:55:14.088  INFO 4985 --- [2-retry-1-0-C-1] c.k.d.kafka.data.DataTopicConsumer       :  Error from : data.topic-retry-1, data : this is added to 4 Error
+2022-09-21 07:55:14.603  INFO 4985 --- [ad | producer-1] org.apache.kafka.clients.Metadata        : [Producer clientId=producer-1] Resetting the last seen epoch of partition data.topic-retry-2-0 to 0 since the associated topicId changed from null to I8vFfXy9QiCUnPrEWe-K8w
+2022-09-21 07:55:14.642  INFO 4985 --- [3-retry-2-0-C-1] o.a.k.clients.consumer.KafkaConsumer     : [Consumer clientId=consumer-group_id-2, groupId=group_id] Seeking to offset 0 for partition data.topic-retry-2-0
+2022-09-21 07:55:15.455  INFO 4985 --- [3-retry-2-0-C-1] c.k.d.kafka.data.DataTopicConsumer       :  Error from : data.topic-retry-2, data : this is added to 4 Error
+2022-09-21 07:55:15.485 ERROR 4985 --- [3-retry-2-0-C-1] k.r.DeadLetterPublishingRecovererFactory : Record: topic = data.topic-retry-2, partition = 0, offset = 0, main topic = data.topic threw an error at topic data.topic-retry-2 and won't be retried. Sending to DLT with name data.topic-dlt.
+
+org.springframework.kafka.listener.ListenerExecutionFailedException: Listener failed; nested exception is org.springframework.kafka.listener.TimestampedException: Exception thrown at 2022-09-21T02:25:15.458939Z; nested exception is org.springframework.kafka.listener.ListenerExecutionFailedException: Listener method 'public void com.kafka.deadletterqueue.kafka.data.DataTopicConsumer.consumeTopicData(java.lang.String,java.lang.String) throws java.lang.InterruptedException' threw exception; nested exception is java.lang.InterruptedException: Logically interrupted !!!
+	at org.springframework.kafka.listener.KafkaMessageListenerContainer$ListenerConsumer.decorateException(KafkaMessageListenerContainer.java:2717) ~[spring-kafka-2.8.8.jar:2.8.8]
+	at org.springframework.kafka.listener.KafkaMessageListenerContainer$ListenerConsumer.doInvokeOnMessage(KafkaMessageListenerContainer.java:2683) ~[spring-kafka-2.8.8.jar:2.8.8]
+	at org.springframework.kafka.listener.KafkaMessageListenerContainer$ListenerConsumer.invokeOnMessage(KafkaMessageListenerContainer.java:2643) ~[spring-kafka-2.8.8.jar:2.8.8]
+	at org.springframework.kafka.listener.KafkaMessageListenerContainer$ListenerConsumer.doInvokeRecordListener(KafkaMessageListenerContainer.java:2570) ~[spring-kafka-2.8.8.jar:2.8.8]
+	at org.springframework.kafka.listener.KafkaMessageListenerContainer$ListenerConsumer.doInvokeWithRecords(KafkaMessageListenerContainer.java:2451) ~[spring-kafka-2.8.8.jar:2.8.8]
+	at org.springframework.kafka.listener.KafkaMessageListenerContainer$ListenerConsumer.invokeRecordListener(KafkaMessageListenerContainer.java:2329) ~[spring-kafka-2.8.8.jar:2.8.8]
+	at org.springframework.kafka.listener.KafkaMessageListenerContainer$ListenerConsumer.invokeListener(KafkaMessageListenerContainer.java:2000) ~[spring-kafka-2.8.8.jar:2.8.8]
+	at org.springframework.kafka.listener.KafkaMessageListenerContainer$ListenerConsumer.invokeIfHaveRecords(KafkaMessageListenerContainer.java:1373) ~[spring-kafka-2.8.8.jar:2.8.8]
+	at org.springframework.kafka.listener.KafkaMessageListenerContainer$ListenerConsumer.pollAndInvoke(KafkaMessageListenerContainer.java:1364) ~[spring-kafka-2.8.8.jar:2.8.8]
+	at org.springframework.kafka.listener.KafkaMessageListenerContainer$ListenerConsumer.run(KafkaMessageListenerContainer.java:1255) ~[spring-kafka-2.8.8.jar:2.8.8]
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515) ~[na:na]
+	at java.base/java.util.concurrent.FutureTask.run$$$capture(FutureTask.java:264) ~[na:na]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:829) ~[na:na]
+Caused by: org.springframework.kafka.listener.TimestampedException: Exception thrown at 2022-09-21T02:25:15.458939Z; nested exception is org.springframework.kafka.listener.ListenerExecutionFailedException: Listener method 'public void com.kafka.deadletterqueue.kafka.data.DataTopicConsumer.consumeTopicData(java.lang.String,java.lang.String) throws java.lang.InterruptedException' threw exception; nested exception is java.lang.InterruptedException: Logically interrupted !!!
+	at org.springframework.kafka.listener.adapter.KafkaBackoffAwareMessageListenerAdapter.onMessage(KafkaBackoffAwareMessageListenerAdapter.java:100) ~[spring-kafka-2.8.8.jar:2.8.8]
+	at org.springframework.kafka.listener.adapter.KafkaBackoffAwareMessageListenerAdapter.onMessage(KafkaBackoffAwareMessageListenerAdapter.java:49) ~[spring-kafka-2.8.8.jar:2.8.8]
+	at org.springframework.kafka.listener.KafkaMessageListenerContainer$ListenerConsumer.doInvokeOnMessage(KafkaMessageListenerContainer.java:2663) ~[spring-kafka-2.8.8.jar:2.8.8]
+	... 12 common frames omitted
+Caused by: org.springframework.kafka.listener.ListenerExecutionFailedException: Listener method 'public void com.kafka.deadletterqueue.kafka.data.DataTopicConsumer.consumeTopicData(java.lang.String,java.lang.String) throws java.lang.InterruptedException' threw exception; nested exception is java.lang.InterruptedException: Logically interrupted !!!
+	at org.springframework.kafka.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:363) ~[spring-kafka-2.8.8.jar:2.8.8]
+	at org.springframework.kafka.listener.adapter.RecordMessagingMessageListenerAdapter.onMessage(RecordMessagingMessageListenerAdapter.java:92) ~[spring-kafka-2.8.8.jar:2.8.8]
+	at org.springframework.kafka.listener.adapter.RecordMessagingMessageListenerAdapter.onMessage(RecordMessagingMessageListenerAdapter.java:53) ~[spring-kafka-2.8.8.jar:2.8.8]
+	at org.springframework.kafka.listener.adapter.KafkaBackoffAwareMessageListenerAdapter.invokeDelegateOnMessage(KafkaBackoffAwareMessageListenerAdapter.java:107) ~[spring-kafka-2.8.8.jar:2.8.8]
+	at org.springframework.kafka.listener.adapter.KafkaBackoffAwareMessageListenerAdapter.onMessage(KafkaBackoffAwareMessageListenerAdapter.java:97) ~[spring-kafka-2.8.8.jar:2.8.8]
+	... 14 common frames omitted
+Caused by: java.lang.InterruptedException: Logically interrupted !!!
+	at com.kafka.deadletterqueue.kafka.data.DataTopicConsumer.consumeTopicData(DataTopicConsumer.java:27) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566) ~[na:na]
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:169) ~[spring-messaging-5.3.22.jar:5.3.22]
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:119) ~[spring-messaging-5.3.22.jar:5.3.22]
+	at org.springframework.kafka.listener.adapter.HandlerAdapter.invoke(HandlerAdapter.java:56) ~[spring-kafka-2.8.8.jar:2.8.8]
+	at org.springframework.kafka.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:347) ~[spring-kafka-2.8.8.jar:2.8.8]
+	... 18 common frames omitted
+
+2022-09-21 07:55:15.960  INFO 4985 --- [ad | producer-1] org.apache.kafka.clients.Metadata        : [Producer clientId=producer-1] Resetting the last seen epoch of partition data.topic-dlt-0 to 0 since the associated topicId changed from null to U959KtsXSd6ThWau7XU8Ow
+2022-09-21 07:55:15.969  INFO 4985 --- [ner#4-dlt-0-C-1] o.s.k.retrytopic.RetryTopicConfigurer    : Received message in dlt listener: data.topic-dlt-0@0
